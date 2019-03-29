@@ -141,8 +141,8 @@ class Sina
         $response = str_replace("netAmount", '"netAmount"', $response);
         $response = str_replace("buy", '"buy"', $response);
         $response = str_replace("sell", '"sell"', $response);
-        $response = str_replace("bAmount", 'buyAmount', $response);
-        $response = str_replace("sAmount", 'sellAmount', $response);
+        $response = str_replace("bAmount", 'buyamount', $response);
+        $response = str_replace("sAmount", 'sellamount', $response);
 
         $lhb_data = json_decode($response, true);
 

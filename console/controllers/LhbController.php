@@ -74,21 +74,21 @@ class LhbController extends Controller
             $lhb_data = array_merge($lhb_data['buy'], $lhb_data['sell']);
 
             foreach ($lhb_data as $row) {
-                $row['buyAmount']  = $row['buyAmount'] * 10000;
-                $row['sellAmount'] = $row['sellAmount'] * 10000;
+                $row['buyamount'] = intval($row['buyamount']);
+                $row['sellamount'] = intval($row['sellamount']);
                 $row['trade_date'] = $stock['trade_date'];
                 $row['stock_name'] = $stock['stock_name'];
-                $row['direction']  = $row['buyAmount'] > $row['sellAmount'] ? 'buy' : 'sell';
+                $row['direction'] = $row['buyamount'] > $row['sellamount'] ? 'buy' : 'sell';
 
                 $row_key = $row['stock_code'] . $row['trade_date'] . $row['comCode'] . $row['comName'];
                 unset($row['comCode']);
                 unset($row['netAmount']);
 
                 if (isset($sqlRow['$row_key'])) {
-                    $sqlRow[$row_key]['buyAmount']  = $row['sellAmount'] > $sqlRow[$row_key]['buyAmount']
-                        ? $row['sellAmount'] : $sqlRow['$row_key']['buyAmount'];
-                    $sqlRow[$row_key]['sellAmount'] = $row['sellAmount'] > $sqlRow[$row_key]['sellAmount']
-                        ? $row['sellAmount'] : $sqlRow['$row_key']['sellAmount'];
+                    $sqlRow[$row_key]['buyamount'] = $row['buyamount'] > $sqlRow[$row_key]['buyamount']
+                        ? $row['buyamount'] : $sqlRow[$row_key]['buyamount'];
+                    $sqlRow[$row_key]['sellamount'] = $row['sellamount'] > $sqlRow[$row_key]['sellamount']
+                        ? $row['sellamount'] : $sqlRow[$row_key]['sellamount'];
                 } else {
                     $sqlRow [$row_key] = $row;
                 }
