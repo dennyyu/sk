@@ -89,9 +89,12 @@ class LhbController extends Controller
                         ? $row['buyamount'] : $sqlRow[$row_key]['buyamount'];
                     $sqlRow[$row_key]['sellamount'] = $row['sellamount'] > $sqlRow[$row_key]['sellamount']
                         ? $row['sellamount'] : $sqlRow[$row_key]['sellamount'];
+
                 } else {
                     $sqlRow [$row_key] = $row;
                 }
+
+                $sqlRow[$row_key]['netamount'] = $sqlRow[$row_key]['buyamount']-$sqlRow[$row_key]['sellamount'];
 
             }
         }
